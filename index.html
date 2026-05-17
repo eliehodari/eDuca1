@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnHub Rwanda - Empowering Education</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Professional palette: deep navy · slate · white · gold accent */
+    --navy:        #0d1b2a;
+    --navy-mid:    #1b2d42;
+    --navy-light:  #243b55;
+    --slate:       #334e68;
+    --slate-mid:   #4a6580;
+    --gold:        #c9a84c;
+    --gold-light:  #e2c170;
+    --gold-pale:   #f5e9c8;
+    --white:       #ffffff;
+    --off-white:   #f7f8fa;
+    --border:      #e2e8f0;
+    --text:        #0d1b2a;
+    --subtext:     #4a6580;
+    --card-bg:     #ffffff;
+    --section-bg:  #f0f4f8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 68px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+    background: var(--off-white);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(16px);
+    display: flex; align-items: center;
+    padding: 0 48px; height: 68px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(13,27,42,0.06);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem; font-weight: 800;
+    color: var(--navy);
+    margin-right: auto; text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2px; list-style: none; }
+
+  .nav-links a {
+    text-decoration: none; color: var(--slate);
+    font-weight: 500; font-size: 0.88rem;
+    padding: 8px 16px; border-radius: 6px;
+    transition: all 0.2s; letter-spacing: 0.1px;
+  }
+
+  .nav-links a:hover {
+    background: var(--off-white);
+    color: var(--navy);
+  }
+
+  .nav-links a.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 580px;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 100px 48px;
+    position: relative; overflow: hidden;
+  }
+
+  /* Subtle diagonal texture lines */
+  #home::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,168,76,0.04) 40px,
+      rgba(201,168,76,0.04) 41px
+    );
+  }
+
+  /* Gold glow orb top-right */
+  #home::after {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    font-size: 0.8rem; font-weight: 600;
+    padding: 6px 16px; border-radius: 50px;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    margin-bottom: 28px; position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  #home h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800;
+    color: var(--white); max-width: 800px; line-height: 1.15;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  #home h1 span { color: var(--gold-light); }
+
+  #home p {
+    color: rgba(255,255,255,0.65); font-size: 1.05rem;
+    max-width: 580px; margin: 20px auto 40px;
+    font-weight: 400; line-height: 1.8;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy); border: none;
+    padding: 15px 44px; border-radius: 8px;
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s; position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.3s ease both;
+    display: inline-block; letter-spacing: 0.2px;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 88px 48px; }
+
+  .section-header { text-align: center; margin-bottom: 60px; }
+
+  .section-header .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--navy); margin-bottom: 10px; line-height: 1.2;
+  }
+
+  .section-header .accent-line {
+    width: 48px; height: 3px; border-radius: 2px;
+    background: var(--gold);
+    margin: 14px auto 18px;
+  }
+
+  .section-header p {
+    color: var(--subtext); font-size: 1rem;
+    max-width: 540px; margin: 0 auto; line-height: 1.78;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 24px; max-width: 1120px; margin: 0 auto;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px; padding: 34px 30px;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(13,27,42,0.12);
+    border-color: var(--gold-pale);
+  }
+
+  .card:hover::before { transform: scaleX(1); }
+
+  .card h3 {
+    color: var(--navy); font-size: 1.05rem;
+    font-weight: 700; margin-bottom: 12px;
+  }
+
+  .card p { color: var(--subtext); font-size: 0.92rem; line-height: 1.78; }
+
+  .card ul { list-style: none; color: var(--subtext); font-size: 0.92rem; line-height: 2.1; }
+  .card ul li::before { content: '– '; color: var(--gold); font-weight: 700; }
+
+  /* ── STAT BANNER ── */
+  .stat-banner {
+    background: var(--navy-mid);
+    border-radius: 16px; padding: 52px 48px;
+    max-width: 1120px; margin: 0 auto 56px;
+    text-align: center; position: relative; overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.15);
+    box-shadow: 0 8px 40px rgba(13,27,42,0.2);
+  }
+
+  .stat-banner::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  .stat-banner h3 {
+    color: var(--white); font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; margin-bottom: 6px;
+  }
+
+  .stat-banner p {
+    color: rgba(255,255,255,0.55); font-size: 0.88rem;
+    margin-bottom: 36px;
+  }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 36px 20px; color: var(--white);
+    transition: background 0.25s, transform 0.25s;
+  }
+
+  .stat-box:hover {
+    background: rgba(201,168,76,0.08);
+    transform: translateY(-3px);
+  }
+
+  .stat-box .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 800; line-height: 1;
+    margin-bottom: 10px; color: var(--gold-light);
+  }
+
+  .stat-box .stat-label {
+    font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.5;
+  }
+
+  /* ── ALTERNATE BG ── */
+  .bg-light { background: var(--section-bg); }
+
+  /* ── FEATURE TILES ── */
+  .feature-tiles {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px; max-width: 1120px; margin: 0 auto 32px;
+  }
+
+  .feature-tile {
+    background: var(--navy);
+    border-radius: 12px; padding: 30px 26px; color: var(--white);
+    border: 1px solid rgba(201,168,76,0.15);
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .feature-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(13,27,42,0.25);
+    border-color: rgba(201,168,76,0.35);
+  }
+
+  .feature-tile::after {
+    content: '';
+    position: absolute; bottom: -24px; right: -24px;
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(201,168,76,0.07);
+    pointer-events: none;
+  }
+
+  .feature-tile .icon {
+    font-size: 1.5rem; margin-bottom: 14px; display: block;
+    background: rgba(201,168,76,0.12);
+    width: 48px; height: 48px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .feature-tile h4 { font-weight: 700; font-size: 0.98rem; margin-bottom: 8px; color: var(--white); }
+  .feature-tile p  { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+  /* ── TIMELINE ── */
+  .timeline { max-width: 820px; margin: 0 auto; position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+    transform: translateX(-50%); border-radius: 2px;
+  }
+
+  .timeline-item {
+    display: flex; align-items: flex-start;
+    margin-bottom: 48px; position: relative;
+  }
+
+  .timeline-item:nth-child(odd)  { flex-direction: row; }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-content {
+    width: calc(50% - 40px);
+    background: var(--white); border-radius: 12px;
+    padding: 26px 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(13,27,42,0.12);
+    border-color: var(--gold-pale);
+  }
+
+  .timeline-content h4 {
+    font-weight: 700; font-size: 0.98rem;
+    color: var(--navy); margin-bottom: 8px;
+  }
+
+  .timeline-content p {
+    font-size: 0.87rem; color: var(--subtext); line-height: 1.7;
+  }
+
+  .timeline-dot {
+    width: 18px; height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute; left: 50%; top: 22px;
+    transform: translateX(-50%);
+    border: 3px solid var(--off-white);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-spacer { width: calc(50% - 40px); }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 22px; max-width: 1120px; margin: 0 auto 32px;
+  }
+
+  .insight-card {
+    background: var(--white); border-radius: 12px; padding: 30px 26px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+
+  .insight-card::after {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--gold); border-radius: 3px 0 0 3px;
+  }
+
+  .insight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(13,27,42,0.12);
+  }
+
+  .insight-card h4 {
+    font-weight: 700; font-size: 0.98rem; color: var(--navy); margin-bottom: 10px;
+  }
+
+  .insight-card p { font-size: 0.9rem; color: var(--subtext); line-height: 1.78; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { max-width: 900px; margin: 0 auto; }
+
+  .testimonial {
+    font-style: italic; color: var(--subtext);
+    font-size: 0.93rem; line-height: 1.78;
+    padding: 20px 0 20px 24px;
+    border-left: 3px solid var(--gold);
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, var(--gold-pale) 0%, transparent 80%);
+    border-radius: 0 8px 8px 0;
+    transition: background 0.2s;
+  }
+
+  .testimonial:hover { background: linear-gradient(90deg, #f0e3b0 0%, transparent 80%); }
+  .testimonial span { color: var(--navy); font-weight: 700; font-style: normal; }
+
+  /* ── VISION BANNER ── */
+  .vision-banner {
+    background: var(--navy);
+    border-radius: 16px; padding: 52px 48px;
+    max-width: 1120px; margin: 0 auto 48px;
+    color: var(--white); position: relative; overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.18);
+    box-shadow: 0 8px 40px rgba(13,27,42,0.22);
+  }
+
+  .vision-banner::before {
+    content: '';
+    position: absolute; bottom: -120px; right: -80px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 68%);
+    pointer-events: none;
+  }
+
+  .vision-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem; margin-bottom: 10px; position: relative;
+    color: var(--white);
+  }
+
+  .vision-banner > p {
+    color: rgba(255,255,255,0.6); margin-bottom: 40px;
+    font-size: 0.93rem; line-height: 1.75;
+    max-width: 740px; position: relative;
+  }
+
+  .roadmap-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; position: relative; }
+
+  .roadmap-col {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px; padding: 26px 22px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .roadmap-col:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .roadmap-col h4 {
+    font-weight: 700; font-size: 0.92rem; margin-bottom: 10px;
+    color: var(--gold-light);
+  }
+
+  .roadmap-col p { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.72; }
+
+  /* ── USP LIST ── */
+  .usp-list { list-style: none; max-width: 700px; }
+
+  .usp-list li {
+    padding: 10px 0; font-size: 0.92rem; color: var(--subtext); line-height: 1.65;
+    border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px;
+  }
+
+  .usp-list li:last-child { border-bottom: none; }
+
+  .usp-list li::before {
+    content: '✓';
+    color: var(--white); background: var(--gold);
+    font-size: 0.7rem; font-weight: 800;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ── FULL-WIDTH CARD ── */
+  .full-card {
+    background: var(--card-bg);
+    border-radius: 12px; padding: 34px 32px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    max-width: 1120px; margin: 0 auto 24px;
+    transition: box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .full-card:hover {
+    box-shadow: 0 8px 30px rgba(13,27,42,0.1);
+    border-color: var(--gold-pale);
+  }
+
+  .full-card h3 {
+    color: var(--navy); font-size: 1.05rem;
+    font-weight: 700; margin-bottom: 12px;
+  }
+
+  .full-card p { color: var(--subtext); font-size: 0.92rem; line-height: 1.78; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.45);
+    text-align: center; padding: 44px 48px;
+    font-size: 0.87rem; line-height: 1.9;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .stats-row { grid-template-columns: 1fr; }
+    .roadmap-cols { grid-template-columns: 1fr; }
+    .timeline::before { left: 16px; }
+    .timeline-item { flex-direction: column !important; padding-left: 44px; }
+    .timeline-dot { left: 16px; }
+    .timeline-content { width: 100%; }
+    .timeline-spacer { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">LearnHub <span>Rwanda</span></a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#journey">My Journey</a></li>
+    <li><a href="#solution">Our Solution</a></li>
+    <li><a href="#development">Development</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#next">What's Next</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-badge">🎓 EdTech for Rwanda</div>
+  <h1>Transforming Rwanda's <span>Educational Landscape</span></h1>
+  <p>Bridging the gap between traditional learning and modern workforce demands through innovative educational solutions</p>
+  <a href="#journey" class="btn-primary">Explore My Journey</a>
+</section>
+
+<!-- MY JOURNEY -->
+<section id="journey" class="bg-light">
+  <div class="section-header">
+    <span class="eyebrow">Founder Story</span>
+    <h2>My Entrepreneurial Journey</h2>
+    <div class="accent-line"></div>
+    <p>Discovering opportunities to revolutionize education in Rwanda through technology and innovation</p>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <h3>The Spark</h3>
+      <p>My journey began when I witnessed firsthand the educational challenges facing Rwandan students, particularly in rural communities. The disconnect between classroom learning and real-world skills needed for employment became increasingly apparent.</p>
+    </div>
+    <div class="card">
+      <h3>Research & Discovery</h3>
+      <p>Through extensive research and community engagement, I identified key pain points in Rwanda's education system: inadequate infrastructure, teacher shortages, and curriculum gaps that leave students unprepared for the modern job market.</p>
+    </div>
+    <div class="card">
+      <h3>Vision Formation</h3>
+      <p>I envisioned a comprehensive solution that would address these challenges through technology-enhanced learning, teacher training programs, and industry-aligned curriculum development.</p>
+    </div>
+  </div>
+
+  <!-- Problem Statement Visualization -->
+  <div style="max-width:1100px; margin:48px auto 0;">
+    <div class="stat-banner">
+      <h3>Problem Statement Visualization</h3>
+      <p><strong>Core Challenge:</strong> Obstacles in Rwanda's Educational Framework – Building Toward Excellence</p>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">60%</div>
+          <div class="stat-label">Rural schools lack basic infrastructure</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">40%</div>
+          <div class="stat-label">Teacher shortage nationwide</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">70%</div>
+          <div class="stat-label">Graduates lack job-market skills</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid" style="max-width:1100px; margin:28px auto 0;">
+    <div class="card">
+      <h3>Who's Affected?</h3>
+      <p>The impact extends to learners (particularly in remote areas), educators, families, and policymakers. The ripple effect touches economic development and social advancement opportunities across the nation.</p>
+    </div>
+    <div class="card">
+      <h3>Geographic Impact</h3>
+      <p>Rural regions face the most severe challenges with limited educational resources. Urban centers also struggle with overcrowded classrooms and insufficient funding for quality education.</p>
+    </div>
+    <div class="card">
+      <h3>Critical Periods</h3>
+      <p>The challenges intensify during enrollment periods and national assessment seasons, when educational system limitations become most visible and impactful.</p>
+    </div>
+  </div>
+
+  <div class="full-card" style="margin-top:28px;">
+    <h3>Root Causes</h3>
+    <p>Multiple interconnected factors drive these issues: limited financial resources, educator scarcity, inadequate facilities, and academic programs that don't align with market needs, collectively hindering Rwanda's advancement.</p>
+  </div>
+</section>
+
+<!-- OUR SOLUTION -->
+<section id="solution">
+  <div class="section-header">
+    <span class="eyebrow">The Platform</span>
+    <h2>Our Solution: LearnHub Platform</h2>
+    <div class="accent-line"></div>
+    <p>A comprehensive digital education ecosystem designed to address Rwanda's educational challenges</p>
+  </div>
+
+  <div class="full-card">
+    <h3>How It Works</h3>
+    <p>LearnHub combines online learning platforms, teacher training modules, and industry partnerships to create a holistic educational experience. Students access quality content through mobile-friendly interfaces, while teachers receive ongoing professional development.</p>
+  </div>
+
+  <div class="feature-tiles">
+    <div class="feature-tile">
+      <div class="icon">📱</div>
+      <h4>Mobile Learning</h4>
+      <p>Accessible education through smartphones and tablets, ensuring learning continuity everywhere.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="icon">🎓</div>
+      <h4>Teacher Training</h4>
+      <p>Comprehensive professional development programs to enhance teaching quality and effectiveness.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="icon">🏢</div>
+      <h4>Industry Partnerships</h4>
+      <p>Direct collaboration with employers to align curriculum with job market demands and opportunities.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="icon">📊</div>
+      <h4>Analytics Dashboard</h4>
+      <p>Real-time tracking of student progress and learning outcomes for data-driven decisions.</p>
+    </div>
+  </div>
+
+  <div class="cards-grid" style="max-width:1100px; margin:0 auto 28px;">
+    <div class="card">
+      <h3>Target Beneficiaries</h3>
+      <ul>
+        <li>Primary: Students aged 12–25 in rural and urban areas</li>
+        <li>Secondary: Teachers seeking professional development</li>
+        <li>Tertiary: Educational institutions and government bodies</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Implementation Strategy</h3>
+      <ul>
+        <li>Phase 1: Pilot programs in 5 districts</li>
+        <li>Phase 2: Nationwide rollout with government support</li>
+        <li>Phase 3: Regional expansion across East Africa</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Delivery Mechanism</h3>
+      <p>Cloud-based platform with offline capabilities, mobile apps, and physical learning centers in underserved areas with solar-powered equipment and satellite connectivity.</p>
+    </div>
+  </div>
+
+  <div class="full-card">
+    <h3>Unique Selling Points</h3>
+    <ul class="usp-list">
+      <li>First integrated education platform specifically designed for Rwanda's context</li>
+      <li>Offline-first approach ensuring accessibility in low-connectivity areas</li>
+      <li>Local language support (Kinyarwanda) alongside English and French</li>
+      <li>AI-powered personalized learning paths</li>
+      <li>Strong government and NGO partnerships for sustainable implementation</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DEVELOPMENT -->
+<section id="development" class="bg-light">
+  <div class="section-header">
+    <span class="eyebrow">Build Process</span>
+    <h2>Prototype Development</h2>
+    <div class="accent-line"></div>
+    <p>Tracking the evolution of our educational solution from concept to implementation</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h4>Initial Concept (Month 1)</h4>
+        <p>Created basic wireframes and user journey maps. Identified core features needed for MVP development.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>User Research (Month 2)</h4>
+        <p>Conducted interviews with 50 students and 20 teachers. Refined features based on user feedback and pain points.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h4>MVP Development (Month 3–4)</h4>
+        <p>Built functional prototype with core learning modules. Integrated offline capabilities and basic analytics.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>Beta Testing (Month 5)</h4>
+        <p>Launched pilot program with 200 students across 3 schools. Gathered extensive usage data and feedback.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h4>Iteration & Improvement (Month 6)</h4>
+        <p>Implemented user-requested features: better offline sync, local language support, and enhanced teacher dashboard.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+  </div>
+
+  <div class="full-card" style="margin-top:48px;">
+    <h3>Key Adaptations Made</h3>
+    <p>Based on user feedback, we pivoted from a purely online platform to an offline-first solution. We also simplified the interface after observing user behavior and added voice-based learning for low-literacy users.</p>
+  </div>
+
+  <div class="full-card">
+    <h3>Initial User Feedback</h3>
+    <div class="testimonials">
+      <p class="testimonial">"The offline feature is a game-changer for our rural students." <span>– Teacher from Nyagatare District</span></p>
+      <p class="testimonial">"Finally, learning content that connects to real job opportunities." <span>– Student from Kigali</span></p>
+      <p class="testimonial">"The teacher training modules have improved my classroom management significantly." <span>– Secondary School Teacher</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="section-header">
+    <span class="eyebrow">Lessons & Growth</span>
+    <h2>Reflection & Learning</h2>
+    <div class="accent-line"></div>
+    <p>Insights gained through challenges, feedback, and iterative development</p>
+  </div>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <h4>Challenges Faced</h4>
+      <p>Internet connectivity issues in rural areas required a complete rethink of our technology approach. We also struggled with teacher resistance to technology adoption, which led us to develop better change management strategies.</p>
+    </div>
+    <div class="insight-card">
+      <h4>Lessons Learned</h4>
+      <p>Understanding local context is crucial for educational technology success. We learned that involving community leaders and parents in the process significantly improves adoption rates and sustainability.</p>
+    </div>
+    <div class="insight-card">
+      <h4>Data-Driven Decisions</h4>
+      <p>User analytics revealed that students engaged more with visual and interactive content. This led us to prioritize multimedia content creation and gamification elements in our platform.</p>
+    </div>
+  </div>
+
+  <div class="full-card">
+    <h3>Feedback Integration</h3>
+    <p>Regular feedback sessions with students and teachers shaped our product roadmap and feature prioritization, ensuring every update directly addresses real user needs.</p>
+  </div>
+
+  <div class="full-card">
+    <h3>Impact of Research on Development</h3>
+    <p>Our primary research with 500+ students and 100+ teachers revealed that 78% preferred visual learning methods, while 65% needed local language support. Secondary research from UNESCO and Rwanda's Ministry of Education provided policy context that influenced our compliance and partnership strategies.</p>
+  </div>
+</section>
+
+<!-- WHAT'S NEXT -->
+<section id="next" class="bg-light">
+  <div class="section-header">
+    <span class="eyebrow">Roadmap</span>
+    <h2>Future Vision & Plans</h2>
+    <div class="accent-line"></div>
+    <p>Scaling our solution for greater impact across Rwanda and beyond</p>
+  </div>
+
+  <div class="vision-banner">
+    <h3>Current Prototype Status</h3>
+    <p>We have successfully completed our MVP with 85% user satisfaction rate. The platform currently serves 500+ active users across 5 districts with 95% uptime and strong engagement metrics.</p>
+    <div class="roadmap-cols">
+      <div class="roadmap-col">
+        <h4>Short-term (3–6 months)</h4>
+        <p>Scale to 10,000 users across 15 districts. Launch teacher certification program and establish 20 physical learning centers.</p>
+      </div>
+      <div class="roadmap-col">
+        <h4>Medium-term (6–12 months)</h4>
+        <p>Achieve nationwide coverage with 50,000 users. Integrate with national curriculum standards and launch employer partnership program.</p>
+      </div>
+      <div class="roadmap-col">
+        <h4>Long-term (1–3 years)</h4>
+        <p>Expand to Uganda and Tanzania. Develop AI-powered personalized learning and launch LearnHub as the leading EdTech platform in East Africa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid" style="max-width:1100px; margin:0 auto;">
+    <div class="card">
+      <h3>Funding Strategy</h3>
+      <p>Seeking $500K seed funding from impact investors. Revenue streams include subscription fees, government contracts, and corporate training programs.</p>
+    </div>
+    <div class="card">
+      <h3>Partnership Goals</h3>
+      <p>Establishing MOUs with Ministry of Education, partnering with telecom providers for data accessibility, and collaborating with international NGOs for funding and expertise.</p>
+    </div>
+    <div class="card">
+      <h3>Technology Roadmap</h3>
+      <p>Implementing AI-powered learning analytics, developing VR/AR capabilities for immersive learning, and creating blockchain-based certification system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 LearnHub Rwanda. Transforming education, one student at a time.</p>
+  <p>Contact: info@learnhubrwanda.com | +250790709409</p>
+</footer>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
